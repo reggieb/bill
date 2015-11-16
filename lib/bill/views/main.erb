@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <title>Sky Bill</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Bootstrap Styling -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bill</h1>
+      <section class="statement">
+        <h2>Statement</h2>
+        <dl class="dl-horizontal">
+          <dt>Generated</dt>
+          <dd><%= data.statement.generated %></dd>
+          <dt>Due</dt>
+          <dd><%= data.statement.due %></dd>
+          <dt>Period Covered</dt>
+          <dd>
+            <%= data.statement.period.from %>
+            to
+            <%= data.statement.period.to %>
+          </dd>
+          <dt>Total</dt>
+          <dd>&pound;<%= data.total %></dd>
+        </dl>
+      </section>
+        
+      <section class="subscriptions">
+        <h2>Subscriptions</h2>
+        <dl class="dl-horizontal total">
+          <dt>Subscription total</dt>
+          <dd>&pound;<%= data.package.total %></dd>
+        </dl>
+        <% data.package.subscriptions.each do |subscription| %>
+          <dl class="dl-horizontal subscription">
+            <dt>Name</dt>
+            <dd><%= subscription.name %></dd>
+            <dt>Type</dt>
+            <dd><%= subscription.type %></dd>
+            <dt>Cost</dt>
+            <dd>&pound;<%= subscription.cost %></dd>            
+          </dl>
+        <% end %>
+      </section>
+        
+      <section class="call_changes">
+        <h2>Call Charges</h2>
+        <dl class="dl-horizontal total">
+          <dt>Call total</dt>
+          <dd>&pound;<%= data.callCharges.total %></dd>
+        </dl>
+        <% data.callCharges.calls.each do |call| %>
+          <dl class="dl-horizontal call">
+            <dt>Called</dt>
+            <dd><%= call.called %></dd>
+            <dt>Duration</dt>
+            <dd><%= call.duration %></dd>
+            <dt>Cost</dt>
+            <dd>&pound;<%= call.cost %></dd>
+          </dl>  
+        <% end %>
+      </section>
+      
+      <section class="sky_store">
+        <h2>Sky Store</h2>
+        <dl class="dl-horizontal total">
+          <dt>Store total</dt>
+          <dd>&pound;<%= data.skyStore.total %></dd>
+        </dl>
+        <h3>Rentals</h3>
+        <% data.skyStore.rentals.each do |rental| %>
+          <dl class="dl-horizontal rental">
+            <dt>Title</dt>
+            <dd><%= rental.title %></dd>
+            <dt>Cost</dt>
+            <dd>&pound;<%= rental.cost %></dd>
+          </dl>
+        <% end %>
+        <h3>Buy and keep</h3>
+        <% data.skyStore.buyAndKeep.each do |buy_and_keep| %>
+          <dl class="dl-horizontal rental">
+            <dt>Title</dt>
+            <dd><%= buy_and_keep.title %></dd>
+            <dt>Cost</dt>
+            <dd>&pound;<%= buy_and_keep.cost %></dd>
+          </dl>
+        <% end %>
+      </section>
+      
+    </div>
+  </body>
+</html>
