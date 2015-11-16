@@ -24,7 +24,7 @@ module Bill
     end
 
     def data
-      @bill_data ||= Data.new(url)
+      @data ||= Data.new(url)
     end
 
     def url
