@@ -15,7 +15,7 @@ module Bill
       assert_equal json, data.body
     end
     
-    def test_object
+    def test_objects
       assert_equal payload['foo'], data.objects.foo
     end
     

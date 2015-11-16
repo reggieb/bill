@@ -1,6 +1,8 @@
 require 'net/http'
 require 'json'
 module Bill
+  # Bill::Data is used to gather data from a given url and to package
+  # that data into a set of nested objects.
   class Data
     
     def self.for(url)
